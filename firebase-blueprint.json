@@ -1,0 +1,46 @@
+{
+  "entities": {
+    "Assessment": {
+      "title": "Pediatric Triage Assessment",
+      "description": "A record of a child's symptoms and the AI-generated triage recommendation.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "description": "The UID of the volunteer who performed the assessment." },
+        "childAge": { "type": "number", "description": "Age of the child in years." },
+        "childTemp": { "type": "number", "description": "Body temperature in Celsius." },
+        "duration": { "type": "number", "description": "Duration of symptoms in days." },
+        "symptoms": { "type": "string", "description": "Description of the symptoms." },
+        "location": { "type": "string", "description": "Location code or name of the rural district." },
+        "riskLevel": { "type": "string", "enum": ["Low", "Medium", "High"] },
+        "likelyCondition": { "type": "string" },
+        "immediateAction": { "type": "string" },
+        "alertDistrict": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "childAge", "childTemp", "duration", "symptoms", "location", "riskLevel", "likelyCondition", "immediateAction", "alertDistrict", "createdAt"]
+    },
+    "MalnutritionScan": {
+      "title": "Malnutrition Scan",
+      "description": "AI analysis of an image for malnutrition indicators.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "muacEstimate": { "type": "number" },
+        "wastingSigns": { "type": "boolean" },
+        "confidence": { "type": "string", "enum": ["High", "Medium", "Low"] },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "muacEstimate", "wastingSigns", "confidence", "createdAt"]
+    }
+  },
+  "firestore": {
+    "assessments/{assessmentId}": {
+      "schema": "Assessment",
+      "description": "Collection of triage assessments."
+    },
+    "scans/{scanId}": {
+      "schema": "MalnutritionScan",
+      "description": "Collection of malnutrition scans."
+    }
+  }
+}

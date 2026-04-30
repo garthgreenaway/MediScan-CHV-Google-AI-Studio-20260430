@@ -1,0 +1,8 @@
+{
+  "name": "MediScan-CHV-Prototype",
+  "description": "A pediatric triage assistant for Community Health Volunteers (CHVs) to assess child symptoms and malnutrition signs using AI.",
+  "requestFramePermissions": [
+    "camera"
+  ],
+  "majorCapabilities": []
+}
